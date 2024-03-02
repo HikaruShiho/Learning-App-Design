@@ -1,8 +1,8 @@
-import { connectMySQL } from '../dataaccess/connection'
 import { GameRepository } from '../domain/game/gameRepository'
 import { toDisc } from '../domain/turn/disc'
 import { Point } from '../domain/turn/point'
 import { TurnRepository } from '../domain/turn/turnRepository'
+import { connectMySQL } from '../infrastructure/connection'
 
 const turnRepository = new TurnRepository()
 const gameRepository = new GameRepository()
