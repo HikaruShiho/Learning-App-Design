@@ -33,7 +33,10 @@ export class Board {
     // 石を置く
     newDiscs[move.point.y][move.point.x] = move.disc
 
-    // TODO ひっくり返す
+    // ひっくり返す
+    flipPoints.forEach((point) => {
+      newDiscs[point.y][point.x] = move.disc
+    })
 
     return new Board(newDiscs)
   }
