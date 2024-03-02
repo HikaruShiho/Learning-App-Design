@@ -1,4 +1,5 @@
 import { DomainError } from '../../error/DomainError'
+import { WinnerDisc } from '../gameResult/winnerDisc'
 import { Board, initialBoard } from './board'
 import { Disc } from './disc'
 import { Move } from './move'
@@ -37,6 +38,23 @@ export class Turn {
       nextBoard,
       new Date()
     )
+  }
+
+  gameEnded(): boolean {
+    return this.nextDisc === undefined
+  }
+
+  winnerDisc(): WinnerDisc {
+    const darkCount = this.board.count(Disc.Dark)
+    const lightCount = this.board.count(Disc.Light)
+
+    if (darkCount === lightCount) {
+      return WinnerDisc.Draw
+    } else if (darkCount > lightCount) {
+      return WinnerDisc.Dark
+    } else {
+      return WinnerDisc.Light
+    }
   }
 
   private decideNextDisc(board: Board, previousDisc: Disc): Disc | undefined {
